@@ -1,6 +1,13 @@
 import { test } from "@playwright/test";
 import { dmqHomePage } from "../Pages/dmqHomePage";
-import dataArr2 from "../TestData/diff_sets_data.json";
+import { readFileSync } from "node:fs";
+
+const dataArr2 = JSON.parse(
+    readFileSync(
+        new URL("../../TestData/diff_sets_data.json", import.meta.url),
+        "utf-8"
+    )
+);
 
 
 interface TestData {
