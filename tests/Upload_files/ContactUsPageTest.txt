@@ -1,0 +1,63 @@
+package com.automationexercise.tests;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.testng.Assert;
+import org.testng.annotations.*;
+
+import com.automationexercise.pages.ContactUsPage;
+import com.automationexercise.pages.HomePage;
+
+public class ContactUsPageTest {
+	
+	ContactUsPage cp;
+	HomePage hp;
+	 
+	
+	@BeforeMethod
+ public void initialisation() {
+		
+		hp = new HomePage();
+		hp.initialisation();
+		cp = hp.clickOnContactUsField();
+		
+		cp.getInTouchisDisplayed();
+		
+	} 
+	
+	
+	
+	/*
+	 * @Test(enabled = true,priority = 1) public void getInTouchIsDisplayed() {
+	 * 
+	 * cp.getInTouchisDisplayed();
+	 * 
+	 * 
+	 * }
+	 */
+	@Test(enabled = true,priority = 2)
+	public void enterDatainContactUsFields() throws Exception {
+		
+		cp.enterDataINameField();
+		cp.enterDataIEmail();
+		cp.enterDataISubject();
+		cp.uploadFileInContactsUs();
+		
+		
+		Thread.sleep(3000);
+		cp.clickOnSubmitButton();
+		
+		Thread.sleep(3000);
+		cp.handleAlertinContactUs();
+		
+		Thread.sleep(2000);
+		cp.clickOnHomeButton();
+		
+		 String ExpectedTitle = "Automation Exercise";	  
+		 String ActualTitle =  hp.getHomepageTitle();
+		 Assert.assertEquals(ActualTitle, ExpectedTitle);
+		
+		
+	}
+	
+	 
+}
